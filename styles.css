@@ -1,0 +1,686 @@
+:root {
+  --bg: #edf3f8;
+  --surface: rgba(255, 255, 255, 0.82);
+  --surface-strong: #ffffff;
+  --surface-muted: #eef4fa;
+  --line: rgba(28, 60, 95, 0.12);
+  --line-strong: rgba(28, 60, 95, 0.22);
+  --text: #0f2237;
+  --text-soft: #5e7288;
+  --accent: #175ea8;
+  --accent-deep: #0f3f73;
+  --accent-soft: #d5e7fb;
+  --success: #12826c;
+  --shadow: 0 28px 80px rgba(19, 55, 92, 0.12);
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 16px;
+  --container: min(1180px, calc(100vw - 32px));
+  --transition: 220ms ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(81, 151, 226, 0.24), transparent 32%),
+    radial-gradient(circle at right center, rgba(145, 174, 204, 0.18), transparent 28%),
+    linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+  min-height: 100vh;
+}
+
+html[lang="ar"] body {
+  font-family: "Noto Naskh Arabic", "Geeza Pro", Tahoma, sans-serif;
+}
+
+html[lang="zh"] body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.26;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.45) 80%, transparent 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+.page-shell {
+  width: var(--container);
+  margin: 0 auto;
+  padding: 28px 0 52px;
+}
+
+.site-header {
+  position: sticky;
+  top: 16px;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(248, 251, 254, 0.8);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 35px rgba(12, 32, 53, 0.08);
+}
+
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  color: #fff;
+  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-name,
+.brand-tag,
+.eyebrow,
+.section-text,
+.hero-lead,
+.metric span,
+.info-card p,
+.benefit-item p,
+.step-card p,
+.feature-panel p,
+.contact-form span,
+.form-feedback {
+  margin: 0;
+}
+
+.brand-name {
+  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.brand-tag {
+  color: var(--text-soft);
+  font-size: 0.85rem;
+}
+
+.site-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+}
+
+.site-nav a {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: color var(--transition);
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--accent);
+}
+
+.language-switcher {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.language-switcher select {
+  min-width: 84px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-strong);
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+main {
+  display: grid;
+  gap: 22px;
+}
+
+.section-panel {
+  position: relative;
+  overflow: hidden;
+  padding: 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+.section-panel::after {
+  content: "";
+  position: absolute;
+  inset: auto -10% -55% auto;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(23, 94, 168, 0.14), transparent 68%);
+  pointer-events: none;
+}
+
+.hero-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 26px;
+  align-items: stretch;
+  padding-top: 40px;
+}
+
+.hero-copy,
+.hero-card,
+.signal-card,
+.hero-metrics,
+.split-layout,
+.section-heading,
+.card-grid,
+.steps-grid,
+.benefits-list,
+.dual-panel-grid,
+.contact-form {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  display: inline-flex;
+  padding: 8px 12px;
+  border: 1px solid rgba(23, 94, 168, 0.16);
+  border-radius: 999px;
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+  letter-spacing: -0.03em;
+}
+
+h1 {
+  max-width: 11ch;
+  margin-top: 18px;
+  font-size: clamp(2.8rem, 5vw, 5.2rem);
+  line-height: 0.95;
+}
+
+h2 {
+  margin-top: 18px;
+  font-size: clamp(1.75rem, 3vw, 2.7rem);
+  line-height: 1.05;
+}
+
+h3 {
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.hero-lead,
+.section-text,
+.info-card p,
+.step-card p,
+.benefit-item p,
+.feature-panel p,
+.contact-panel .section-text {
+  color: var(--text-soft);
+  line-height: 1.72;
+  font-size: 1rem;
+}
+
+.hero-lead {
+  max-width: 62ch;
+  margin-top: 20px;
+  font-size: 1.08rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-weight: 800;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    background var(--transition),
+    color var(--transition);
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-2px);
+}
+
+.button-primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+  box-shadow: 0 16px 28px rgba(15, 63, 115, 0.18);
+}
+
+.button-secondary {
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.hero-card {
+  display: grid;
+  gap: 16px;
+}
+
+.signal-card,
+.info-card,
+.step-card,
+.benefit-item,
+.feature-panel,
+.highlight-box {
+  border: 1px solid rgba(28, 60, 95, 0.08);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.signal-card {
+  padding: 24px;
+}
+
+.signal-chip {
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.signal-card h2 {
+  margin-top: 16px;
+  font-size: clamp(1.55rem, 2.2vw, 2.2rem);
+}
+
+.signal-card p {
+  margin-top: 14px;
+  color: var(--text-soft);
+  line-height: 1.75;
+}
+
+.hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.metric {
+  padding: 18px 16px;
+  border: 1px solid rgba(28, 60, 95, 0.08);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(235, 244, 252, 0.9) 100%);
+}
+
+.metric strong {
+  display: block;
+  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+  font-size: 1rem;
+}
+
+.metric span {
+  display: block;
+  margin-top: 8px;
+  color: var(--text-soft);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.section-heading {
+  max-width: 860px;
+}
+
+.split-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.highlight-box {
+  padding: 22px;
+  color: var(--accent-deep);
+  background: linear-gradient(180deg, rgba(213, 231, 251, 0.7) 0%, rgba(255, 255, 255, 0.82) 100%);
+  line-height: 1.75;
+  font-weight: 700;
+}
+
+.card-grid,
+.steps-grid,
+.benefits-list {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.four-columns {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.info-card,
+.step-card,
+.benefit-item {
+  padding: 24px;
+}
+
+.info-card p,
+.step-card p,
+.benefit-item p {
+  margin-top: 12px;
+}
+
+.steps-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.step-card span {
+  display: inline-flex;
+  margin-bottom: 16px;
+  color: var(--accent);
+  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+.benefits-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.benefit-item {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(237, 243, 248, 0.92) 100%);
+}
+
+.dual-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.feature-panel {
+  min-height: 100%;
+}
+
+.feature-panel p {
+  margin-top: 18px;
+}
+
+.accent-panel {
+  color: #fff;
+  background:
+    linear-gradient(145deg, rgba(23, 94, 168, 0.96) 0%, rgba(15, 63, 115, 0.98) 100%),
+    #0f3f73;
+}
+
+.accent-panel .eyebrow,
+.accent-panel p,
+.accent-panel .text-link {
+  color: #fff;
+}
+
+.accent-panel .eyebrow {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.text-link {
+  display: inline-flex;
+  margin-top: 22px;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.contact-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.contact-form {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid rgba(28, 60, 95, 0.08);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.contact-form label {
+  display: grid;
+  gap: 8px;
+}
+
+.contact-form span {
+  font-weight: 700;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid rgba(28, 60, 95, 0.14);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus,
+.language-switcher select:focus {
+  outline: 2px solid rgba(23, 94, 168, 0.18);
+  border-color: rgba(23, 94, 168, 0.4);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.contact-form-honeypot {
+  display: none !important;
+}
+
+.form-feedback {
+  min-height: 1.5em;
+  color: var(--success);
+  font-weight: 700;
+}
+
+.form-feedback.is-error {
+  color: #b23b3b;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+[dir="rtl"] body,
+body.rtl {
+  font-family: "Manrope", "Segoe UI", sans-serif;
+}
+
+[dir="rtl"] .site-header,
+[dir="rtl"] .hero-section,
+[dir="rtl"] .split-layout,
+[dir="rtl"] .contact-panel {
+  direction: rtl;
+}
+
+[dir="rtl"] .site-nav,
+[dir="rtl"] .hero-actions,
+[dir="rtl"] .brand-block,
+[dir="rtl"] .language-switcher {
+  direction: rtl;
+}
+
+@media (max-width: 1080px) {
+  .site-header {
+    grid-template-columns: 1fr;
+    border-radius: 28px;
+  }
+
+  .site-nav,
+  .language-switcher {
+    justify-content: flex-start;
+  }
+
+  .hero-section,
+  .split-layout,
+  .contact-panel,
+  .dual-panel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .four-columns,
+  .steps-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    width: min(100vw - 20px, 100%);
+    padding-top: 18px;
+  }
+
+  .site-header,
+  .section-panel {
+    padding: 20px;
+  }
+
+  h1 {
+    max-width: none;
+    font-size: clamp(2.4rem, 12vw, 4.1rem);
+  }
+
+  h2 {
+    font-size: clamp(1.6rem, 8vw, 2.4rem);
+  }
+
+  .hero-metrics,
+  .four-columns,
+  .steps-grid,
+  .benefits-list {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form {
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .section-panel,
+  .site-header {
+    animation: rise-in 700ms ease both;
+  }
+
+  .section-panel:nth-child(2) {
+    animation-delay: 90ms;
+  }
+
+  .section-panel:nth-child(3) {
+    animation-delay: 140ms;
+  }
+
+  .section-panel:nth-child(4) {
+    animation-delay: 190ms;
+  }
+
+  .section-panel:nth-child(5) {
+    animation-delay: 240ms;
+  }
+
+  .section-panel:nth-child(6) {
+    animation-delay: 290ms;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
