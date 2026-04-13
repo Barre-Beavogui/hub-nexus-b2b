@@ -497,6 +497,49 @@ h3 {
   font-weight: 800;
 }
 
+.word-motion-target {
+  position: relative;
+  touch-action: manipulation;
+}
+
+.word-motion-token {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  transform:
+    translate3d(var(--word-translate-x, 0), var(--word-translate-y, 0), 0)
+    rotate(var(--word-rotate, 0deg));
+  transition:
+    transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 280ms ease,
+    text-shadow 280ms ease;
+  will-change: transform;
+}
+
+.word-motion-token::after {
+  content: "";
+  position: absolute;
+  inset: 62% -0.1em -0.02em;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(23, 94, 168, 0.06), rgba(23, 94, 168, 0.22), rgba(23, 94, 168, 0.06));
+  opacity: var(--word-glow, 0);
+  transform: scaleX(calc(0.88 + var(--word-glow, 0) * 0.42));
+  filter: blur(8px);
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+  z-index: -1;
+}
+
+.word-motion-target.word-motion-active .word-motion-token {
+  transition-duration: 90ms;
+  text-shadow: 0 8px 18px rgba(23, 94, 168, 0.14);
+}
+
+.accent-panel .word-motion-token::after {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.08));
+}
+
 .contact-panel {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
@@ -670,6 +713,22 @@ body.rtl {
 
   .section-panel:nth-child(6) {
     animation-delay: 290ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word-motion-token,
+  .word-motion-token::after {
+    transition: none;
+  }
+
+  .word-motion-token {
+    transform: none !important;
+    text-shadow: none !important;
+  }
+
+  .word-motion-token::after {
+    opacity: 0 !important;
   }
 }
 

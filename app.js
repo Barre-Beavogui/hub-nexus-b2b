@@ -626,6 +626,26 @@ const placeholderNodes = document.querySelectorAll("[data-i18n-placeholder]");
 const form = document.querySelector("#contact-form");
 const feedback = document.querySelector("#form-feedback");
 const submitButton = form.querySelector('button[type="submit"]');
+const wordMotionTargetsSelector = [
+  ".brand-tag",
+  ".site-nav a",
+  ".hero-copy h1",
+  ".hero-copy .hero-lead",
+  ".hero-actions .button",
+  ".signal-card h2",
+  ".signal-card p",
+  ".section-heading h2",
+  ".split-layout .section-text",
+  ".highlight-box p",
+  ".info-card h3",
+  ".step-card h3",
+  ".benefit-item h3",
+  ".feature-panel h2",
+  ".feature-panel p",
+  ".text-link",
+].join(", ");
+const wordMotionState = new WeakMap();
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const savedLanguage = window.localStorage.getItem("preferred-language");
 const browserLanguage = navigator.language?.slice(0, 2);
 const defaultLanguage = savedLanguage || (translations[browserLanguage] ? browserLanguage : "fr");
@@ -670,6 +690,167 @@ function setFeedback(messageKey, state = "success") {
   feedback.classList.toggle("is-error", state === "error");
 }
 
+function getWordSegments(text, language) {
+  if (typeof Intl !== "undefined" && typeof Intl.Segmenter === "function") {
+    const useGrapheme = language === "zh";
+    const segmenter = new Intl.Segmenter(language, {
+      granularity: useGrapheme ? "grapheme" : "word",
+    });
+
+    return Array.from(segmenter.segment(text)).map((segment) => ({
+      value: segment.segment,
+      movable: useGrapheme ? /\S/.test(segment.segment) : Boolean(segment.isWordLike),
+    }));
+  }
+
+  return text.split(/(\s+)/).map((segment) => ({
+    value: segment,
+    movable: segment.trim().length > 0,
+  }));
+}
+
+function resetWordMotion(element) {
+  const state = wordMotionState.get(element);
+
+  if (!state) {
+    return;
+  }
+
+  element.classList.remove("word-motion-active");
+
+  state.tokens.forEach((token) => {
+    token.style.removeProperty("--word-translate-x");
+    token.style.removeProperty("--word-translate-y");
+    token.style.removeProperty("--word-rotate");
+    token.style.removeProperty("--word-glow");
+  });
+}
+
+function applyWordMotion(element, clientX, clientY) {
+  if (prefersReducedMotion.matches) {
+    return;
+  }
+
+  const state = wordMotionState.get(element);
+
+  if (!state || state.tokens.length === 0) {
+    return;
+  }
+
+  const scopeRect = element.getBoundingClientRect();
+  const maxDistance = Math.max(140, Math.min(260, scopeRect.width * 0.58));
+
+  element.classList.add("word-motion-active");
+
+  state.tokens.forEach((token) => {
+    const rect = token.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const deltaX = clientX - centerX;
+    const deltaY = clientY - centerY;
+    const distance = Math.hypot(deltaX, deltaY);
+    const intensity = Math.max(0, 1 - distance / maxDistance);
+
+    const offsetX = Math.max(-12, Math.min(12, -deltaX * intensity * 0.16));
+    const offsetY = Math.max(-12, Math.min(10, -deltaY * intensity * 0.12 - intensity * 6));
+    const rotation = Math.max(-7, Math.min(7, offsetX * 0.65));
+
+    token.style.setProperty("--word-translate-x", `${offsetX.toFixed(2)}px`);
+    token.style.setProperty("--word-translate-y", `${offsetY.toFixed(2)}px`);
+    token.style.setProperty("--word-rotate", `${rotation.toFixed(2)}deg`);
+    token.style.setProperty("--word-glow", intensity.toFixed(3));
+  });
+}
+
+function bindWordMotion(element) {
+  if (element.dataset.wordMotionBound === "true") {
+    return;
+  }
+
+  const pointerState = {
+    frameId: 0,
+    x: 0,
+    y: 0,
+  };
+
+  const scheduleFrame = (clientX, clientY) => {
+    pointerState.x = clientX;
+    pointerState.y = clientY;
+
+    if (pointerState.frameId) {
+      return;
+    }
+
+    pointerState.frameId = window.requestAnimationFrame(() => {
+      pointerState.frameId = 0;
+      applyWordMotion(element, pointerState.x, pointerState.y);
+    });
+  };
+
+  const clearMotion = () => {
+    if (pointerState.frameId) {
+      window.cancelAnimationFrame(pointerState.frameId);
+      pointerState.frameId = 0;
+    }
+
+    resetWordMotion(element);
+  };
+
+  element.addEventListener("pointerenter", (event) => {
+    scheduleFrame(event.clientX, event.clientY);
+  });
+
+  element.addEventListener("pointermove", (event) => {
+    scheduleFrame(event.clientX, event.clientY);
+  });
+
+  element.addEventListener("pointerdown", (event) => {
+    scheduleFrame(event.clientX, event.clientY);
+  });
+
+  element.addEventListener("pointerleave", clearMotion);
+  element.addEventListener("pointerup", clearMotion);
+  element.addEventListener("pointercancel", clearMotion);
+
+  element.dataset.wordMotionBound = "true";
+}
+
+function prepareWordMotion() {
+  const language = document.documentElement.lang || "fr";
+
+  document.querySelectorAll(wordMotionTargetsSelector).forEach((element) => {
+    const sourceText = element.textContent;
+
+    if (!sourceText.trim()) {
+      return;
+    }
+
+    const segments = getWordSegments(sourceText, language);
+    const fragment = document.createDocumentFragment();
+    const tokens = [];
+
+    segments.forEach((segment) => {
+      if (segment.movable) {
+        const word = document.createElement("span");
+        word.className = "word-motion-token";
+        word.textContent = segment.value;
+        fragment.appendChild(word);
+        tokens.push(word);
+        return;
+      }
+
+      fragment.appendChild(document.createTextNode(segment.value));
+    });
+
+    element.textContent = "";
+    element.appendChild(fragment);
+    element.classList.add("word-motion-target");
+    wordMotionState.set(element, { tokens });
+    bindWordMotion(element);
+    resetWordMotion(element);
+  });
+}
+
 function applyTranslations(language) {
   const dictionary = translations[language] || translations.fr;
   document.documentElement.lang = language;
@@ -704,6 +885,7 @@ function applyTranslations(language) {
   languageSelect.setAttribute("aria-label", dictionary.languageAriaLabel);
 
   window.localStorage.setItem("preferred-language", language);
+  prepareWordMotion();
 }
 
 languageSelect.addEventListener("change", (event) => {
