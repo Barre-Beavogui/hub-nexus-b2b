@@ -440,6 +440,95 @@ const translations = {
     formRequestPlaceholder: "Descrivete il vostro bisogno",
     formSuccess: "Grazie. La vostra richiesta è stata preparata correttamente.",
   },
+  hi: {
+    documentTitle: "Hub Nexus B2B | अंतरराष्ट्रीय वाणिज्यिक संपर्क",
+    languageAriaLabel: "भाषा चुनें",
+    languageLabel: "भाषा चुनें",
+    headerTag: "विश्वसनीय व्यावसायिक मध्यस्थता",
+    navAbout: "परिचय",
+    navServices: "सेवाएं",
+    navProcess: "प्रक्रिया",
+    navContact: "संपर्क",
+    heroEyebrow: "अंतरराष्ट्रीय B2B नेटवर्क",
+    heroTitle: "व्यवसायों को अवसरों से जोड़ना",
+    heroSubtitle:
+      "हम आपकी खरीद प्रक्रिया को सरल बनाते हैं, लेनदेन को तेज करते हैं और आपको विश्वसनीय साझेदारों से जोड़ते हैं।",
+    heroCtaPrimary: "शुरू करें",
+    heroCtaSecondary: "साझेदार बनें",
+    heroCardChip: "योग्य संपर्क",
+    heroCardTitle: "विश्वसनीय साझेदारों तक एक ही प्रवेश बिंदु",
+    heroCardBody:
+      "निर्माता, वितरक, सेवा प्रदाता और पेशेवर खरीदार सत्यापित नेटवर्क और परिणाम-केंद्रित सहयोग के साथ तेजी से आगे बढ़ते हैं।",
+    metricOneValue: "नेटवर्क",
+    metricOneLabel: "योग्य आपूर्तिकर्ता और खरीदार",
+    metricTwoValue: "तेज",
+    metricTwoLabel: "लक्षित संपर्क",
+    metricThreeValue: "विश्वसनीय",
+    metricThreeLabel: "अधिक सहज लेनदेन",
+    aboutEyebrow: "परिचय",
+    aboutTitle: "एक व्यावसायिक साझेदार जो आवश्यकताओं को वास्तविक अवसरों में बदलता है",
+    aboutBody:
+      "हम कंपनियों को सही उत्पाद, सही साझेदार और सही अवसर पहचानने में मदद करते हैं, एक मजबूत नेटवर्क, बाजार विशेषज्ञता और सुव्यवस्थित समन्वय के साथ।",
+    aboutHighlight:
+      "हमारा काम आपूर्ति और मांग के बीच की रुकावट को कम करना है ताकि B2B कंपनियां अधिक स्पष्टता और भरोसे के साथ तेजी से आगे बढ़ सकें।",
+    servicesEyebrow: "सेवाएं",
+    servicesTitle: "पूरे व्यावसायिक चक्र को सरल बनाने के लिए तैयार की गई सेवाएं",
+    serviceOneTitle: "खरीद समाधान",
+    serviceOneBody:
+      "आपकी तकनीकी, परिचालन और क्षेत्रीय आवश्यकताओं के अनुरूप प्रस्तावों की तेज पहचान।",
+    serviceTwoTitle: "व्यावसायिक संपर्क",
+    serviceTwoBody:
+      "विक्रेताओं, वितरकों, नेटवर्क साझेदारों और वास्तविक रूप से योग्य खरीदारों के बीच लक्षित संपर्क।",
+    serviceThreeTitle: "लेनदेन सुगमता",
+    serviceThreeBody:
+      "निर्णयों को तेज करने और प्रक्रियाओं को सरल बनाने के लिए समन्वित संवाद।",
+    serviceFourTitle: "योग्य नेटवर्क तक पहुंच",
+    serviceFourBody:
+      "विश्वसनीय साझेदारों का एक तंत्र जो संपर्कों को सुरक्षित और व्यावसायिक रूप से अधिक प्रभावी बनाता है।",
+    processEyebrow: "यह कैसे काम करता है",
+    processTitle: "एक सरल और क्रियान्वयन-केंद्रित पद्धति",
+    stepOneTitle: "अपनी आवश्यकता बताइए",
+    stepOneBody: "अपने लक्ष्य, सीमाएं और चयन मानदंड साझा करें।",
+    stepTwoTitle: "हम आपको विश्वसनीय साझेदारों से जोड़ते हैं",
+    stepTwoBody: "हम अपने नेटवर्क को सक्रिय करके सबसे उपयुक्त संपर्क प्रस्तुत करते हैं।",
+    stepThreeTitle: "तेजी और प्रभावी ढंग से अपने लेनदेन पूरे करें",
+    stepThreeBody:
+      "आप अधिक स्पष्ट ढांचे, योग्य संपर्कों और सरल प्रक्रिया के साथ तेजी से आगे बढ़ते हैं।",
+    benefitsEyebrow: "लाभ",
+    benefitsTitle: "आपकी कंपनी को क्या मिलेगा",
+    benefitOneTitle: "समय की बचत",
+    benefitOneBody: "बिखरी हुई खोज कम और संपर्क स्थापना अधिक तेज।",
+    benefitTwoTitle: "सत्यापित आपूर्तिकर्ताओं तक पहुंच",
+    benefitTwoBody: "परिचालन अनिश्चितता कम करने के लिए भरोसेमंद साझेदारों का चयन।",
+    benefitThreeTitle: "प्रतिस्पर्धी मूल्य",
+    benefitThreeBody: "बाजार की अपेक्षाओं और आपके खरीद लक्ष्यों के अनुरूप अवसर।",
+    benefitFourTitle: "सरल प्रक्रिया",
+    benefitFourBody: "कम रुकावट, अधिक स्पष्टता और अधिक सहज व्यावसायिक समन्वय।",
+    supplierEyebrow: "आपूर्तिकर्ताओं के लिए",
+    supplierTitle: "अपना नेटवर्क बढ़ाएं और नए व्यावसायिक अवसरों तक पहुंचें",
+    supplierBody:
+      "अपने प्रस्तावों को योग्य खरीदारों, वितरकों और प्रासंगिक बिक्री नेटवर्क के सामने रखें।",
+    supplierCta: "अपना प्रस्ताव प्रस्तुत करें",
+    buyerEyebrow: "खरीदारों के लिए",
+    buyerTitle: "विश्वसनीय उत्पाद और साझेदार जल्दी खोजें",
+    buyerBody:
+      "योग्य संपर्कों तक पहुंचें और अपनी खरीद परियोजनाओं को अधिक दक्षता के साथ आगे बढ़ाएं।",
+    buyerCta: "अपनी आवश्यकता बताएं",
+    contactEyebrow: "संपर्क",
+    contactTitle: "अपनी आवश्यकता पर बात करें",
+    contactBody:
+      "यह फॉर्म भरें, हम आपके साथ एक उपयोगी और लक्षित चर्चा के लिए संपर्क करेंगे।",
+    formName: "नाम",
+    formCompany: "कंपनी",
+    formEmail: "ईमेल",
+    formRequest: "अनुरोध",
+    formSubmit: "भेजें",
+    formNamePlaceholder: "आपका नाम",
+    formCompanyPlaceholder: "आपकी कंपनी का नाम",
+    formEmailPlaceholder: "you@company.com",
+    formRequestPlaceholder: "अपनी आवश्यकता बताइए",
+    formSuccess: "धन्यवाद। आपका अनुरोध सफलतापूर्वक तैयार हो गया है।",
+  },
   ar: {
     documentTitle: "Hub Nexus B2B | وساطة تجارية دولية",
     languageAriaLabel: "اختر اللغة",
@@ -670,6 +759,10 @@ translations.it.formSuccess = "Grazie. La vostra richiesta è stata inviata corr
 translations.it.formSending = "Invio in corso...";
 translations.it.formError = "Invio non riuscito. Il modulo tenterà un invio diretto.";
 
+translations.hi.formSuccess = "धन्यवाद। आपका अनुरोध सफलतापूर्वक भेज दिया गया है।";
+translations.hi.formSending = "भेजा जा रहा है...";
+translations.hi.formError = "भेजने में समस्या हुई। फॉर्म सीधे सबमिट करने की कोशिश करेगा।";
+
 translations.ar.formSuccess = "شكرًا لكم. تم إرسال طلبكم بنجاح.";
 translations.ar.formSending = "جارٍ الإرسال...";
 translations.ar.formError = "فشل الإرسال. سيحاول النموذج إرسالًا مباشرًا.";
@@ -751,9 +844,9 @@ function applyWordMotion(element, clientX, clientY) {
     const distance = Math.hypot(deltaX, deltaY);
     const intensity = Math.max(0, 1 - distance / maxDistance);
 
-    const offsetX = Math.max(-12, Math.min(12, -deltaX * intensity * 0.16));
-    const offsetY = Math.max(-12, Math.min(10, -deltaY * intensity * 0.12 - intensity * 6));
-    const rotation = Math.max(-7, Math.min(7, offsetX * 0.65));
+    const offsetX = Math.max(-16, Math.min(16, -deltaX * intensity * 0.22));
+    const offsetY = Math.max(-15, Math.min(12, -deltaY * intensity * 0.16 - intensity * 7));
+    const rotation = Math.max(-9, Math.min(9, offsetX * 0.72));
 
     token.style.setProperty("--word-translate-x", `${offsetX.toFixed(2)}px`);
     token.style.setProperty("--word-translate-y", `${offsetY.toFixed(2)}px`);
